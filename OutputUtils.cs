@@ -6,6 +6,11 @@ namespace Des
 {
     public static class OutputUtils
     {
+        public static void PrintBadKeyAlert()
+        {
+            Console.WriteLine("The key provided is not good enough.");
+        }
+
         public static void PrintInputs(byte[] textBytes, byte[] keyBytes)
         {
             Console.WriteLine(

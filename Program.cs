@@ -13,6 +13,12 @@ namespace Des
             var textBytes = ConvertUtils.AsciiStringToByteArray(inputText);
             var keyBytes = ConvertUtils.AsciiStringToByteArray(inputKey);
 
+            if (IsBadKey(keyBytes))
+            {
+                OutputUtils.PrintBadKeyAlert();
+                return;
+            }
+
             OutputUtils.PrintInputs(textBytes, keyBytes);
 
             var encryptedTextBytes = Encrypt(textBytes, keyBytes);
@@ -20,6 +26,12 @@ namespace Des
 
             var decryptedTextBytes = Decrypt(encryptedTextBytes, keyBytes);
             OutputUtils.PrintDecryptionResult(decryptedTextBytes);
+        }
+
+        public static bool IsBadKey(byte[] key)
+        {
+            return DesConstants.BadKeys.Any(
+                badKey => key.SequenceEqual(badKey));
         }
 
         public static byte[] Encrypt(byte[] data, byte[] key)
