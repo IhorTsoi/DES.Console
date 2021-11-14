@@ -1,0 +1,16 @@
+D:\temp\bptd\lab1\Des\bin\Debug\net5.0\Des.exe
+D:\temp\bptd\lab1\Des\bin\Debug\net5.0\Des.deps.json
+D:\temp\bptd\lab1\Des\bin\Debug\net5.0\Des.runtimeconfig.json
+D:\temp\bptd\lab1\Des\bin\Debug\net5.0\Des.runtimeconfig.dev.json
+D:\temp\bptd\lab1\Des\bin\Debug\net5.0\Des.dll
+D:\temp\bptd\lab1\Des\bin\Debug\net5.0\ref\Des.dll
+D:\temp\bptd\lab1\Des\bin\Debug\net5.0\Des.pdb
+D:\temp\bptd\lab1\Des\obj\Debug\net5.0\Des.csproj.AssemblyReference.cache
+D:\temp\bptd\lab1\Des\obj\Debug\net5.0\Des.GeneratedMSBuildEditorConfig.editorconfig
+D:\temp\bptd\lab1\Des\obj\Debug\net5.0\Des.AssemblyInfoInputs.cache
+D:\temp\bptd\lab1\Des\obj\Debug\net5.0\Des.AssemblyInfo.cs
+D:\temp\bptd\lab1\Des\obj\Debug\net5.0\Des.csproj.CoreCompileInputs.cache
+D:\temp\bptd\lab1\Des\obj\Debug\net5.0\Des.dll
+D:\temp\bptd\lab1\Des\obj\Debug\net5.0\ref\Des.dll
+D:\temp\bptd\lab1\Des\obj\Debug\net5.0\Des.pdb
+D:\temp\bptd\lab1\Des\obj\Debug\net5.0\Des.genruntimeconfig.cache
