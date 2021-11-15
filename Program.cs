@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Des
@@ -7,7 +8,7 @@ namespace Des
     {
         static void Main(string[] args)
         {
-            const string inputText = "qweqweqw";
+            const string inputText = "qwerqwerqw"; // 10 symbols
             const string inputKey = "12345678";
 
             var textBytes = ConvertUtils.AsciiStringToByteArray(inputText);
@@ -36,20 +37,47 @@ namespace Des
 
         public static byte[] Encrypt(byte[] data, byte[] key)
         {
-            var afterInitialPermutation = InitialPermutation(data);
-            var afterTransformation = FeistelTransformation(afterInitialPermutation, key);
-            var afterFinalPermutation = FinalPermutation(afterTransformation);
+            return ChunkBy(data, DesConstants.BlockSize)
+                .SelectMany(block =>
+                {
+                    var afterInitialPermutation = InitialPermutation(block);
+                    var afterTransformation = FeistelTransformation(afterInitialPermutation, key);
+                    var afterFinalPermutation = FinalPermutation(afterTransformation);
 
-            return afterFinalPermutation;
+                    return afterFinalPermutation;
+                }).ToArray();
         }
 
         public static byte[] Decrypt(byte[] data, byte[] key)
         {
-            var afterInitialPermutation = InitialPermutation(data);
-            var afterTransformation = ReverseFeistelTransformation(afterInitialPermutation, key);
-            var afterFinalPermutation = FinalPermutation(afterTransformation);
+            return ChunkBy(data, DesConstants.BlockSize)
+                .SelectMany(block =>
+                {
+                    var afterInitialPermutation = InitialPermutation(block);
+                    var afterTransformation = ReverseFeistelTransformation(afterInitialPermutation, key);
+                    var afterFinalPermutation = FinalPermutation(afterTransformation);
 
-            return afterFinalPermutation;
+                    return afterFinalPermutation;
+                }).ToArray();
+        }
+
+        public static IEnumerable<byte[]> ChunkBy(byte[] data, int chunkSize)
+        {
+            var chunksCount = (data.Length + chunkSize - 1) / chunkSize;
+
+            return Enumerable.Range(0, chunksCount)
+                .Select(chunkNumber =>
+                {
+                    var chunk = new byte[chunkSize];
+                    Array.Copy(
+                        data,
+                        chunkNumber * chunkSize,
+                        chunk,
+                        0,
+                        Math.Min(chunkSize, data.Length - chunkNumber * chunkSize));
+
+                    return chunk;
+                });
         }
 
         static byte[] InitialPermutation(byte[] data)
