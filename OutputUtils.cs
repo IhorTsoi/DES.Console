@@ -53,7 +53,7 @@ namespace Des
 
         internal static void PrintEntropy(IEnumerable<double> entropyMeasurements)
         {
-            Console.WriteLine("[ " + string.Join(", ", entropyMeasurements) + " ]");
+            Console.WriteLine("[ " + string.Join("\t", entropyMeasurements) + " ]");
         }
     }
 }
