@@ -61,25 +61,6 @@ namespace Des
                 }).ToArray();
         }
 
-        public static IEnumerable<byte[]> ChunkBy(byte[] data, int chunkSize)
-        {
-            var chunksCount = (data.Length + chunkSize - 1) / chunkSize;
-
-            return Enumerable.Range(0, chunksCount)
-                .Select(chunkNumber =>
-                {
-                    var chunk = new byte[chunkSize];
-                    Array.Copy(
-                        data,
-                        chunkNumber * chunkSize,
-                        chunk,
-                        0,
-                        Math.Min(chunkSize, data.Length - chunkNumber * chunkSize));
-
-                    return chunk;
-                });
-        }
-
         static byte[] InitialPermutation(byte[] data)
         {
             var initialPermutationTable = DesConstants.InitialPermutationTable;
@@ -203,6 +184,25 @@ namespace Des
                 "", finalPermutationTable.Select(i => dataBits[i - 1]));
 
             return ConvertUtils.BinaryStringToBytes(permutedBits);
+        }
+
+        public static IEnumerable<byte[]> ChunkBy(byte[] data, int chunkSize)
+        {
+            var chunksCount = (data.Length + chunkSize - 1) / chunkSize;
+
+            return Enumerable.Range(0, chunksCount)
+                .Select(chunkNumber =>
+                {
+                    var chunk = new byte[chunkSize];
+                    Array.Copy(
+                        data,
+                        chunkNumber * chunkSize,
+                        chunk,
+                        0,
+                        Math.Min(chunkSize, data.Length - chunkNumber * chunkSize));
+
+                    return chunk;
+                });
         }
     }
 }
