@@ -22,6 +22,19 @@ namespace Des
             return bytes;
         }
 
+        public static string ByteToBinaryString(byte b)
+        {
+            int[] bits = { 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            for (int i = 0, n = Convert.ToInt32(b); n > 0; i++)
+            {
+                bits[i] = n % 2;
+                n = n / 2;
+            }
+
+            return string.Join("", bits.Reverse());
+        }
+
         public static string IntegerToBinaryString(int n)
         {
             int i;

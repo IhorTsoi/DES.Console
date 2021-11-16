@@ -8,7 +8,7 @@ namespace Des
     {
         static void Main(string[] args)
         {
-            const string inputText = "qwerqwerqw"; // 10 symbols
+            const string inputText = "qwerqwer";
             const string inputKey = "12345678";
 
             var textBytes = ConvertUtils.AsciiStringToByteArray(inputText);
@@ -104,6 +104,9 @@ namespace Des
                 temp = rightPart;
                 rightPart = ExclusiveOr(leftPart, F(rightPart, roundKey));
                 leftPart = temp;
+
+                OutputUtils.PrintEntropy(
+                    EntropyMeasurer.MeasureEntropy(leftPart.Concat(rightPart).ToArray()));
             }
 
             return leftPart.Concat(rightPart).ToArray();

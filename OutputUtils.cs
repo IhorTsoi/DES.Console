@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -49,5 +50,10 @@ namespace Des
 
         private static string ToAsciiString(byte[] bytes) =>
             Encoding.ASCII.GetString(bytes);
+
+        internal static void PrintEntropy(IEnumerable<double> entropyMeasurements)
+        {
+            Console.WriteLine("[ " + string.Join(", ", entropyMeasurements) + " ]");
+        }
     }
 }
